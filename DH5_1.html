@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS Box Model – Detailed Practice</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .box {
+            width: 300px;
+            background-color: #ffffff;
+        }
+        .box1 {
+            padding: 20px;
+            border: 2px solid black;
+            margin: 20px;
+            background-color: #d9edf7;
+        }
+        .box2 {
+            padding: 40px;
+            border: 4px dashed green;
+            margin: 30px;
+            background-color: #dff0d8;
+        }
+        .box3 {
+            padding: 10px 40px;
+            border: 3px dotted red;
+            margin: 15px 50px;
+            background-color: #fcf8e3;
+        }
+        .label {
+            font-weight: bold;
+            margin-left: 20px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <h1>CSS Box Model – Visual Practice</h1>
+    <p>
+        Each box below shows how <strong>content, padding, border, and margin</strong>
+        affect layout. Open DevTools (Right-click → Inspect) to see the box model diagram.
+    </p>
+
+    <!-- BOX 1 -->
+    <div class="label">
+        BOX 1 → Padding: 20px | Border: 2px solid | Margin: 20px
+    </div>
+    <div class="box box1">
+        <strong>Content Area</strong><br>
+        This text is inside Box 1.<br>
+        Padding creates space inside the border.
+    </div>
+
+    <!-- BOX 2 -->
+    <div class="label">
+        BOX 2 → Padding: 40px | Border: 4px dashed | Margin: 30px
+    </div>
+    <div class="box box2">
+        <strong>Content Area</strong><br>
+        This box has more padding,<br>
+        so the content is pushed further inside.
+    </div>
+
+    <!-- BOX 3 -->
+    <div class="label">
+        BOX 3 → Padding: 10px 40px | Border: 3px dotted | Margin: 15px 50px
+    </div>
+    <div class="box box3">
+        <strong>Content Area</strong><br>
+        Left and right padding is larger<br>
+        than top and bottom padding.
+    </div>
+
+    <hr>
+
+    <h2>Key Takeaways</h2>
+    <ul>
+        <li><strong>Padding</strong> increases space inside the box</li>
+        <li><strong>Border</strong> surrounds content + padding</li>
+        <li><strong>Margin</strong> controls spacing between elements</li>
+        <li>Total size = content + padding + border (margin is outside)</li>
+    </ul>
+
+</body>
+</html>
