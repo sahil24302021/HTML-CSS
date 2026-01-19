@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSS Layout Lab</title>
     <style>
-  
+        /* --- GENERAL PAGE SETUP --- */
         body {
             font-family: sans-serif;
             padding: 40px;
@@ -32,11 +32,29 @@
             display: block; 
         }
         
+        /* =========================================
+           YOUR CSS WORKSPACE
+           ========================================= */
+
         /* --- SECTION A: BOX MODEL --- */
 
-        /* Task 1: Content vs Padding */
-        .box-task-1 {
+        /* Task 1: Content vs Padding (Showing all steps) */
+        .box-step-1 {
+            padding: 20px; 
+            border: 2px solid black;
+            background: #e0f2fe;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .box-step-2 {
             padding: 40px; 
+            border: 2px solid black;
+            background: #e0f2fe;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .box-step-3 {
+            padding: 80px; 
             border: 2px solid black;
             background: #e0f2fe;
             display: inline-block;
@@ -66,8 +84,7 @@
 
         /* Task 4: Side-Specific Spacing */
         .box-task-4 {
-            /* Top Right Bottom Left */
-            padding: 10px 50px 30px 70px;
+            padding: 10px 50px 30px 70px; /* Top Right Bottom Left */
             margin: 60px 20px;
             border: 1px solid black;
             display: inline-block;
@@ -77,9 +94,10 @@
         /* Task 5: Invalid Values */
         .box-task-5 {
             padding: 20px; 
-            margin-bottom: 0px; 
+            margin-bottom: -20px; /* Negative margin pulls elements up */
             background: #ddd;
             width: 100px;
+            border: 1px solid #999;
         }
 
         /* --- SECTION B: LAYOUT COLLISION --- */
@@ -98,12 +116,13 @@
 
         /* Task 7: Inline vs Block */
         .inline-item {
+            display: inline-block; /* Fixed: span needs this to accept margin */
             margin: 50px; 
             padding: 20px;
             background: pink;
         }
         .block-item {
-            display: inline-block; /* Changed to inline-block */
+            display: block; 
             margin: 20px;
             padding: 20px;
             background: lightblue;
@@ -113,7 +132,7 @@
 
         /* Task 8: Enable Flexbox */
         .flex-container-8 {
-            display: flex;
+            display: flex; /* Flex turned on */
             background: #eee;
             border: 2px dashed #333;
             padding: 10px;
@@ -128,7 +147,7 @@
         /* Task 9 & 10: Spacing in Flex */
         .flex-container-9 {
             display: flex;
-            gap: 20px; 
+            gap: 20px; /* Gap used instead of margin */
             background: #eee;
             padding: 10px;
         }
@@ -143,7 +162,7 @@
         /* Task 11: Axes */
         .flex-container-11 {
             display: flex;
-            flex-direction: column; 
+            flex-direction: column; /* Vertical stack */
             gap: 10px;
             background: #eee;
             padding: 10px;
@@ -154,7 +173,7 @@
         /* Task 12: Justify Content */
         .flex-container-12 {
             display: flex;
-            justify-content: space-between; 
+            justify-content: space-between; /* Spaced out evenly */
             background: #ddd;
             padding: 10px;
         }
@@ -164,7 +183,7 @@
             display: flex;
             height: 150px;
             background: #ddd;
-            align-items: center; 
+            align-items: center; /* Vertically centered */
         }
         .item-small { padding: 10px; background: orange; }
         .item-big { padding: 40px; background: orangered; }
@@ -177,7 +196,7 @@
             color: white;
         }
         .push-me {
-            margin-left: auto;
+            margin-left: auto; /* Pushes to the right */
             background: #ef4444;
             padding: 5px 10px;
             cursor: pointer;
@@ -187,13 +206,13 @@
 
         /* Task 15: Button */
         .my-button {
-            padding: 12px 24px; 
+            padding: 15px 30px; /* Big click area */
             margin: 10px;
             background: #2563eb;
             color: white;
             border: none;
-            border-radius: 4px;
             cursor: pointer;
+            border-radius: 4px;
         }
 
         /* Task 16: Card Component */
@@ -210,10 +229,10 @@
             object-fit: cover;
         }
         .card-body {
-            padding: 16px; 
+            padding: 20px; 
         }
         .card-title {
-            margin: 0 0 10px 0; 
+            margin: 0 0 15px 0; 
         }
 
         /* Task 17: Illusion */
@@ -223,7 +242,7 @@
             background: purple;
             color: white;
             padding: 40px; 
-            box-sizing: border-box; /* Optional: keeps size intact */
+            box-sizing: content-box;
         }
         .box-illusion-mar {
             width: 100px;
@@ -246,25 +265,24 @@
             padding: 40px;
             background: orange;
             border: 1px solid black;
-            box-sizing: border-box; /* Fixes the overflow */
+            box-sizing: border-box; /* The fix */
         }
 
         /* Task 19: Vertical Center */
         .vertical-fail {
             height: 150px;
             background: #ccc;
-            /* Margin auto doesn't work on block elements vertically without flex */
         }
         .vertical-success {
             height: 150px;
             background: #ccc;
-            display: flex;
+            display: flex; /* The fix */
         }
         .centered-box {
             width: 100px;
             background: white;
             padding: 10px;
-            margin: auto; /* Works because parent is flex */
+            margin: auto; /* The fix */
         }
 
     </style>
@@ -277,9 +295,11 @@
 
     <div class="task-block">
         <h3>Task 1: Content vs Padding</h3>
-        <span class="instruction">Measure distance. Increase padding 20px -> 40px -> 80px in CSS.</span>
+        <span class="instruction">Compare the sizes: 20px vs 40px vs 80px.</span>
         <br><br>
-        <div class="box-task-1">I am the Content</div>
+        <div class="box-step-1">20px</div>
+        <div class="box-step-2">40px</div>
+        <div class="box-step-3">80px</div>
     </div>
 
     <div class="task-block">
@@ -312,7 +332,7 @@
         <span class="instruction">Try negative padding (invalid) vs negative margin (overlap).</span>
         <br><br>
         <div class="box-task-5">Box 1</div>
-        <div class="box-task-5" style="background: #999; margin-top: -10px;">Box 2</div>
+        <div class="box-task-5">Box 2</div>
     </div>
 
     <h2>Section B: Layout Interaction</h2>
