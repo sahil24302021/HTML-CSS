@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Layout Lab</title>
+    <style>
+  
+        body {
+            font-family: sans-serif;
+            padding: 40px;
+            background-color: #f4f4f4;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h2 { 
+            margin-top: 50px; 
+            border-bottom: 2px solid #ccc; 
+            padding-bottom: 10px; 
+        }
+        .task-block {
+            background: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .instruction { 
+            color: #666; 
+            font-style: italic; 
+            margin-bottom: 15px; 
+            display: block; 
+        }
+        
+        /* --- SECTION A: BOX MODEL --- */
+
+        /* Task 1: Content vs Padding */
+        .box-task-1 {
+            padding: 40px; 
+            border: 2px solid black;
+            background: #e0f2fe;
+            display: inline-block;
+        }
+
+        /* Task 2: Content vs Margin */
+        .box-task-2 {
+            margin: 40px;
+            border: 2px solid black;
+            background: #dcfce7;
+            display: inline-block;
+        }
+
+        /* Task 3: Padding vs Margin Background */
+        .box-task-3-padding {
+            padding: 20px;
+            background-color: #fca5a5;
+            border: 2px solid black;
+            display: inline-block;
+        }
+        .box-task-3-margin {
+            margin: 20px;
+            background-color: #fca5a5;
+            border: 2px solid black;
+            display: inline-block;
+        }
+
+        /* Task 4: Side-Specific Spacing */
+        .box-task-4 {
+            /* Top Right Bottom Left */
+            padding: 10px 50px 30px 70px;
+            margin: 60px 20px;
+            border: 1px solid black;
+            display: inline-block;
+            background: white;
+        }
+
+        /* Task 5: Invalid Values */
+        .box-task-5 {
+            padding: 20px; 
+            margin-bottom: 0px; 
+            background: #ddd;
+            width: 100px;
+        }
+
+        /* --- SECTION B: LAYOUT COLLISION --- */
+
+        /* Task 6: Margin Collapse */
+        .box-collapse-1 {
+            margin-bottom: 50px;
+            background: #cbd5e1;
+            height: 40px;
+        }
+        .box-collapse-2 {
+            margin-top: 30px;
+            background: #94a3b8;
+            height: 40px;
+        }
+
+        /* Task 7: Inline vs Block */
+        .inline-item {
+            margin: 50px; 
+            padding: 20px;
+            background: pink;
+        }
+        .block-item {
+            display: inline-block; /* Changed to inline-block */
+            margin: 20px;
+            padding: 20px;
+            background: lightblue;
+        }
+
+        /* --- SECTION C: FLEXBOX --- */
+
+        /* Task 8: Enable Flexbox */
+        .flex-container-8 {
+            display: flex;
+            background: #eee;
+            border: 2px dashed #333;
+            padding: 10px;
+        }
+        .flex-item {
+            background: #3b82f6;
+            color: white;
+            padding: 10px;
+            border: 1px solid white;
+        }
+
+        /* Task 9 & 10: Spacing in Flex */
+        .flex-container-9 {
+            display: flex;
+            gap: 20px; 
+            background: #eee;
+            padding: 10px;
+        }
+        .flex-item-9 {
+            background: #10b981;
+            color: white;
+            border: 1px solid white;
+            padding: 10px; 
+            margin: 0px; 
+        }
+
+        /* Task 11: Axes */
+        .flex-container-11 {
+            display: flex;
+            flex-direction: column; 
+            gap: 10px;
+            background: #eee;
+            padding: 10px;
+        }
+
+        /* --- SECTION D: ALIGNMENT --- */
+
+        /* Task 12: Justify Content */
+        .flex-container-12 {
+            display: flex;
+            justify-content: space-between; 
+            background: #ddd;
+            padding: 10px;
+        }
+
+        /* Task 13: Align Items */
+        .flex-container-13 {
+            display: flex;
+            height: 150px;
+            background: #ddd;
+            align-items: center; 
+        }
+        .item-small { padding: 10px; background: orange; }
+        .item-big { padding: 40px; background: orangered; }
+
+        /* Task 14: Auto Margin */
+        .auto-margin-container {
+            display: flex;
+            background: #333;
+            padding: 10px;
+            color: white;
+        }
+        .push-me {
+            margin-left: auto;
+            background: #ef4444;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        /* --- SECTION E: DESIGN --- */
+
+        /* Task 15: Button */
+        .my-button {
+            padding: 12px 24px; 
+            margin: 10px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Task 16: Card Component */
+        .card {
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+        .card-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        .card-body {
+            padding: 16px; 
+        }
+        .card-title {
+            margin: 0 0 10px 0; 
+        }
+
+        /* Task 17: Illusion */
+        .box-illusion-pad {
+            width: 100px;
+            height: 100px;
+            background: purple;
+            color: white;
+            padding: 40px; 
+            box-sizing: border-box; /* Optional: keeps size intact */
+        }
+        .box-illusion-mar {
+            width: 100px;
+            height: 100px;
+            background: purple;
+            color: white;
+            margin: 40px;
+        }
+
+        /* --- SECTION F: ADVANCED --- */
+
+        /* Task 18: Broken Layout */
+        .broken-container {
+            display: flex;
+            width: 300px;
+            border: 4px solid red;
+        }
+        .broken-item {
+            width: 50%;
+            padding: 40px;
+            background: orange;
+            border: 1px solid black;
+            box-sizing: border-box; /* Fixes the overflow */
+        }
+
+        /* Task 19: Vertical Center */
+        .vertical-fail {
+            height: 150px;
+            background: #ccc;
+            /* Margin auto doesn't work on block elements vertically without flex */
+        }
+        .vertical-success {
+            height: 150px;
+            background: #ccc;
+            display: flex;
+        }
+        .centered-box {
+            width: 100px;
+            background: white;
+            padding: 10px;
+            margin: auto; /* Works because parent is flex */
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>CSS Layout Masterclass Tasks</h1>
+
+    <h2>Section A: The Box Model</h2>
+
+    <div class="task-block">
+        <h3>Task 1: Content vs Padding</h3>
+        <span class="instruction">Measure distance. Increase padding 20px -> 40px -> 80px in CSS.</span>
+        <br><br>
+        <div class="box-task-1">I am the Content</div>
+    </div>
+
+    <div class="task-block">
+        <h3>Task 2: Content vs Margin</h3>
+        <span class="instruction">Observe space. Add background color in CSS.</span>
+        <br><br>
+        <div style="border: 1px dashed #999;">
+            <div class="box-task-2">I am the Box</div>
+            <span>(Nearby Text)</span>
+        </div>
+    </div>
+
+    <div class="task-block">
+        <h3>Task 3: Padding vs Margin Background</h3>
+        <span class="instruction">Why is only one colored?</span>
+        <br><br>
+        <div class="box-task-3-padding">Padding Box</div>
+        <div class="box-task-3-margin">Margin Box</div>
+    </div>
+
+    <div class="task-block">
+        <h3>Task 4: Side-Specific Spacing</h3>
+        <span class="instruction">Identify top/right/bottom/left in CSS.</span>
+        <br><br>
+        <div class="box-task-4">Shorthand Test</div>
+    </div>
+
+    <div class="task-block">
+        <h3>Task 5: Invalid & Extreme Values</h3>
+        <span class="instruction">Try negative padding (invalid) vs negative margin (overlap).</span>
+        <br><br>
+        <div class="box-task-5">Box 1</div>
+        <div class="box-task-5" style="background: #999; margin-top: -10px;">Box 2</div>
+    </div>
+
+    <h2>Section B: Layout Interaction</h2>
+
+    <div class="task-block">
+        <h3>Task 6: Margin Collapse</h3>
+        <span class="instruction">Measure the space between these two. It's not 80px.</span>
+        <div style="background: #f0f0f0;">
+            <div class="box-collapse-1">Box 1 (Margin Bottom 50)</div>
+            <div class="box-collapse-2">Box 2 (Margin Top 30)</div>
+        </div>
+    </div>
+
+    <div class="task-block">
+        <h3>Task 7: Inline vs Block</h3>
+        <span class="instruction">Why does the pink span behave differently? Convert to inline-block.</span>
+        <br><br>
+        <span class="inline-item">I am a SPAN</span>
+        <div class="block-item">I am a DIV</div>
+    </div>
+
+    <h2>Section C: Flexbox Layout</h2>
+
+    <div class="task-block">
+        <h3>Task 8: Why Flex Exists</h3>
+        <span class="instruction">Uncomment 'display: flex' in CSS class .flex-container-8</span>
+        <div class="flex-container-8">
+            <div class="flex-item">Item 1</div>
+            <div class="flex-item">Item 2</div>
+            <div class="flex-item">Item 3</div>
+        </div>
+    </div>
+
+    <div class="task-block">
+        <h3>Task 9 & 10: Padding vs Margin vs Gap</h3>
+        <span class="instruction">Add padding to items. Then replace margin with 'gap' on container.</span>
+        <div class="flex-container-9">
+            <div class="flex-item-9">Box A</div>
+            <div class="flex-item-9">Box B</div>
+            <div class="flex-item-9">Box C</div>
+        </div>
+    </div>
+
+    <div class="task-block">
+        <h3>Task 11: Axes</h3>
+        <span class="instruction">Change flex-direction to 'column'.</span>
+        <div class="flex-container-11">
+            <div class="flex-item">1</div>
+            <div class="flex-item">2</div>
+            <div class="flex-item">3</div>
+        </div>
+    </div>
+
+    <h2>Section D: Control & Alignment</h2>
+
+    <div class="task-block">
+        <h3>Task 12: Justify Content</h3>
+        <span class="instruction">Apply 'justify-content: space-between' in CSS.</span>
+        <div class="flex-container-12">
+            <div class="flex-item">Start</div>
+            <div class="flex-item">Center</div>
+            <div class="flex-item">End</div>
+        </div>
+    </div>
+
+    <div class="task-block">
+        <h3>Task 13: Align Items</h3>
+        <span class="instruction">Apply 'align-items: center'. Note how padding doesn't affect centering.</span>
+        <div class="flex-container-13">
+            <div class="item-small">Small</div>
+            <div class="item-big">Big</div>
+            <div class="item-small">Small</div>
+        </div>
+    </div>
+
+    <div class="task-block">
+        <h3>Task 14: Auto Margin</h3>
+        <span class="instruction">Use 'margin-left: auto' on the red button.</span>
+        <div class="auto-margin-container">
+            <div style="padding: 5px;">Logo</div>
+            <div style="padding: 5px;">Link</div>
+            <div class="push-me">Sign Out</div>
+        </div>
+    </div>
+
+    <h2>Section E: Design Decisions</h2>
+
+    <div class="task-block">
+        <h3>Task 15: Button Design</h3>
+        <span class="instruction">Adjust padding/margin to improve click area.</span>
+        <br>
+        <button class="my-button">Click Me</button>
+    </div>
+
+    <div class="task-block">
+        <h3>Task 16: Card Component</h3>
+        <span class="instruction">Use only padding for internal spacing.</span>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="Code" class="card-img">
+            <div class="card-body">
+                <h3 class="card-title">Card Title</h3>
+                <p>This is some description text inside the card.</p>
+                <button class="my-button" style="margin: 0; width: 100%;">Action</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="task-block">
+        <h3>Task 17: Box Size Illusion</h3>
+        <span class="instruction">Add large padding to one, large margin to the other.</span>
+        <div style="display: flex;">
+            <div class="box-illusion-pad">Pad Box</div>
+            <div style="width: 20px;"></div>
+            <div class="box-illusion-mar">Mar Box</div>
+        </div>
+    </div>
+
+    <h2>Section F: Advanced</h2>
+
+    <div class="task-block">
+        <h3>Task 18: Broken Layout</h3>
+        <span class="instruction">Why is the right box overflowing? Fix it.</span>
+        <div class="broken-container">
+            <div class="broken-item">50% Width</div>
+            <div class="broken-item">50% Width</div>
+        </div>
+    </div>
+
+    <div class="task-block">
+        <h3>Task 19: Vertical Centering</h3>
+        <span class="instruction">Try centering content in the grey boxes.</span>
+        
+        <p>Attempt 1: Margin (Fail)</p>
+        <div class="vertical-fail">
+            <div class="centered-box" style="margin-top: auto; margin-bottom: auto;">Content</div>
+        </div>
+
+        <p>Attempt 2: Flexbox (Success)</p>
+        <div class="vertical-success">
+            <div class="centered-box" style="margin: auto;">Content</div>
+        </div>
+    </div>
+
+</body>
+</html>
