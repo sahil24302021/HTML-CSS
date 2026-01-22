@@ -1,0 +1,56 @@
+/* Page Background */
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+
+    /* Background added */
+    background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+
+    font-family: Arial, sans-serif;
+}
+
+/* Main Heading */
+h1 {
+    color: #333333;
+}
+
+/* Shared container styling */
+.media-container {
+    padding: 20px;
+    border: 2px solid #bbbbbb;
+    border-radius: 12px;
+
+    /* Container background */
+    background-color: #ffffff;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Audio styling */
+audio {
+    filter: grayscale(100%) brightness(0.8) drop-shadow(2px 4px 6px gray);
+    transition: filter 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Audio hover */
+audio:hover {
+    filter: grayscale(0%) brightness(1) drop-shadow(2px 4px 8px black);
+}
+
+/* Video styling */
+video {
+    filter: blur(2px) contrast(120%) drop-shadow(3px 6px 8px gray);
+    transition: filter 0.4s ease, box-shadow 0.4s ease;
+    border-radius: 8px;
+}
+
+/* Video hover */
+video:hover {
+    filter: blur(0) contrast(100%) drop-shadow(3px 6px 10px black);
+}
