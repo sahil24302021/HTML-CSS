@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    :root {
+      --card-bg: #f2f2f2;
+      --text-color: black;
+    }
+
+    .card {
+      background: var(--card-bg);
+      color: var(--text-color);
+      padding: 15px;
+      width: 200px;
+      margin: 10px 0;
+    }
+
+    button { padding: 10px; }
+  </style>
+</head>
+
+<body>
+  <button onclick="toggleCards()">Toggle Cards</button>
+
+  <div class="card">Card 1</div>
+  <div class="card">Card 2</div>
+
+  <script>
+    let updated = false;
+
+    function toggleCards() {
+      if (!updated) {
+        document.documentElement.style.setProperty('--card-bg', '#cce5ff');
+        document.documentElement.style.setProperty('--text-color', '#003366');
+        updated = true;
+      } else {
+        document.documentElement.style.setProperty('--card-bg', '#f2f2f2');
+        document.documentElement.style.setProperty('--text-color', 'black');
+        updated = false;
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            perspective: 800px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #000;
+        }
+        .cube {
+            width: 100px;
+            height: 100px;
+            background: cyan;
+            animation: spin 4s linear infinite;
+        }
+        @keyframes spin {
+            from {
+                transform: rotateX(0) rotateY(0) rotateZ(0);
+            }
+            to {
+                transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cube"></div>
+</body>
+</html>

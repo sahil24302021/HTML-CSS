@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    :root {
+      --section-margin: 20px;
+      --section-padding: 15px;
+      --bg-color: lightgray;
+    }
+
+    section {
+      margin: var(--section-margin);
+      padding: var(--section-padding);
+      background: var(--bg-color);
+    }
+
+    button { padding: 10px; }
+  </style>
+</head>
+
+<body>
+  <button onclick="toggleSpacing()">Toggle Spacing</button>
+
+  <section>Section One</section>
+  <section>Section Two</section>
+
+  <script>
+    let spaced = false;
+
+    function toggleSpacing() {
+      if (!spaced) {
+        document.documentElement.style.setProperty('--section-margin', '40px');
+        document.documentElement.style.setProperty('--section-padding', '30px');
+        spaced = true;
+      } else {
+        document.documentElement.style.setProperty('--section-margin', '20px');
+        document.documentElement.style.setProperty('--section-padding', '15px');
+        spaced = false;
+      }
+    }
+  </script>
+</body>
+</html>

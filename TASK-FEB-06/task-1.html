@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    :root {
+      --primary-color: blue;
+      --secondary-color: orange;
+      --text-color: black;
+    }
+
+    h1 { color: var(--primary-color); }
+    p { color: var(--text-color); }
+
+    button {
+      background: var(--secondary-color);
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Heading</h1>
+  <p>Paragraph text</p>
+  <button onclick="toggleColors()">Toggle Colors</button>
+
+  <script>
+    let changed = false;
+
+    function toggleColors() {
+      if (!changed) {
+        document.documentElement.style.setProperty('--primary-color', 'green');
+        document.documentElement.style.setProperty('--secondary-color', 'pink');
+        document.documentElement.style.setProperty('--text-color', 'darkgreen');
+        changed = true;
+      } else {
+        document.documentElement.style.setProperty('--primary-color', 'blue');
+        document.documentElement.style.setProperty('--secondary-color', 'orange');
+        document.documentElement.style.setProperty('--text-color', 'black');
+        changed = false;
+      }
+    }
+  </script>
+</body>
+</html>

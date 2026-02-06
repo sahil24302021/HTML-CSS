@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background: #111;
+            height: 100vh;
+        }
+
+        .ramp {
+            width: 400px;
+            height: 10px;
+            background: white;
+            transform: rotate(-20deg);
+            position: absolute;
+            top: 200px;
+            left: 200px;
+        }
+
+        .ball {
+            width: 40px;
+            height: 40px;
+            background: red;
+            border-radius: 50%;
+            position: absolute;
+            top: 150px;
+            left: 180px;
+            animation: roll 3s infinite;
+        }
+
+        @keyframes roll {
+            to {
+                transform: translateX(300px) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ramp"></div>
+    <div class="ball"></div>
+</body>
+
+</html>

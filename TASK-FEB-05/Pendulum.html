@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background: #111;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .pendulum {
+            width: 4px;
+            height: 300px;
+            background: white;
+            transform-origin: top;
+            animation: swing 2s ease-in-out infinite;
+        }
+
+        .ball {
+            width: 40px;
+            height: 40px;
+            background: red;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -20px;
+            left: -18px;
+        }
+
+        @keyframes swing {
+            0% {
+                transform: rotate(25deg);
+            }
+
+            50% {
+                transform: rotate(-25deg);
+            }
+
+            100% {
+                transform: rotate(25deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pendulum">
+        <div class="ball"></div>
+    </div>
+</body>
+
+</html>

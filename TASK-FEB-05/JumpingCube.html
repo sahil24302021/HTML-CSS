@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .cube {
+            width: 80px;
+            height: 80px;
+            background: cyan;
+            animation: jump 1s infinite;
+        }
+
+        @keyframes jump {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-150px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cube"></div>
+</body>
+
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Location</title>
+
+<style>
+
+/* =====================================================
+   BASE PAGE STYLING
+   ===================================================== */
+body{
+    margin:0;
+    height:100vh;
+    overflow:hidden;
+    font-family:'Segoe UI', Tahoma, sans-serif;
+
+    /* Dark night / space themed background using gradients */
+    background:
+        radial-gradient(circle at top left, #1f2933, #0b0f14),
+        radial-gradient(circle at bottom right, #111827, #020617);
+    color:white;
+}
+
+/* =====================================================
+   EMOJI BACKGROUND CONTAINER
+   ===================================================== */
+#emoji-background{
+    position:fixed;
+    inset:0;                 /* Covers full screen */
+    pointer-events:none;     /* Allows clicks through */
+    z-index:0;
+    overflow:hidden;
+}
+
+/* =====================================================
+   INDIVIDUAL EMOJI STYLING
+   ===================================================== */
+.bg-emoji{
+    position:absolute;
+
+    /* Size and opacity are controlled later by JavaScript */
+    font-size:60px;
+    opacity:0.3;
+
+    /* Performance optimization for smooth animation */
+    will-change: transform, top, left;
+
+    /* Subtle glow effect for depth */
+    filter:
+        drop-shadow(0 0 5px rgba(0,0,0,0.5))
+        drop-shadow(0 0 10px rgba(255,255,255,0.1));
+}
+
+/* =====================================================
+   MAIN CONTENT CARD
+   ===================================================== */
+.card{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    z-index:10;
+
+    /* Glassmorphism effect */
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    padding:45px 75px;
+    border-radius:30px;
+    text-align:center;
+
+    /* Depth shadow + subtle border */
+    box-shadow:
+        0 40px 90px rgba(0,0,0,0.6),
+        inset 0 0 0 1px rgba(255,255,255,0.15);
+}
+
+/* =====================================================
+   TITLE
+   ===================================================== */
+h1{
+    margin-bottom:25px;
+    font-size:2.5rem;
+    color:#ffffff;
+    text-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* =====================================================
+   BUTTON
+   ===================================================== */
+button{
+    padding:16px 50px;
+    font-size:18px;
+    border:none;
+    border-radius:50px;
+
+    /* Gradient button */
+    background:linear-gradient(135deg,#ff8a00,#ff4d4d);
+    color:white;
+
+    cursor:pointer;
+    font-weight:700;
+    letter-spacing:0.5px;
+
+    box-shadow:0 18px 40px rgba(255,77,77,0.4);
+    transition:all 0.3s ease;
+}
+
+/* Hover animation */
+button:hover{
+    transform:translateY(-4px) scale(1.05);
+    box-shadow:0 25px 60px rgba(255,77,77,0.7);
+}
+
+/* =====================================================
+   LOCATION OUTPUT
+   ===================================================== */
+#loc{
+    margin-top:30px;
+    font-size:19px;
+    font-weight:600;
+    color:#e5e7eb;
+    min-height:60px;
+}
+
+/* Animated text lines */
+#loc span{
+    display:block;
+    margin:8px 0;
+    opacity:0;
+    transform:translateY(15px);
+    transition:0.5s cubic-bezier(.17,.89,.32,1.49);
+}
+
+/* Visible state */
+#loc.visible span{
+    opacity:1;
+    transform:translateY(0);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     EMOJI BACKGROUND LAYER
+     ===================================================== -->
+<div id="emoji-background"></div>
+
+<!-- =====================================================
+     MAIN CARD
+     ===================================================== -->
+<div class="card">
+    <h1>📍 My Location</h1>
+    <button onclick="getLocation()">Get Coordinates</button>
+    <div id="loc"></div>
+</div>
+
+<script>
+
+/* =====================================================
+   1. EMOJI LIST
+   A large collection to keep visuals diverse
+   ===================================================== */
+const emojis = [
+    "🌍","🌎","🧭","🗺️","📍","🏙️","⛰️","🏖️","✈️","🚀",
+    "🚕","🚁","🛤️","⛵","🏯","🏰","⛺","🌋","🏝️","🏜️",
+    "🏟️","🏥","🏨","🚂","🚍","🚓","🚙","🚚","🛵","🚲",
+    "🚦","🛑","🚧","⚓","🛳️","🛶","🚤","🛩️","🛰️","🛸",
+    "🌃","🌉","🛖","🏛️","🚋"
+];
+
+/* =====================================================
+   2. EMOJI GENERATION
+   ===================================================== */
+const emojiContainer = document.getElementById("emoji-background");
+const COUNT = 50;   // Total emojis on screen
+
+for(let i=0; i<COUNT; i++){
+    const el = document.createElement("div");
+    el.className = "bg-emoji";
+
+    /* Pick a random emoji */
+    el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+
+    /* Random size */
+    const size = Math.floor(Math.random() * 50) + 30;
+    el.style.fontSize = size + "px";
+
+    /* Random depth using opacity */
+    el.style.opacity = 0.1 + Math.random() * 0.4;
+
+    /* Random starting position */
+    el.style.top = Math.random() * 100 + "%";
+    el.style.left = Math.random() * 100 + "%";
+
+    emojiContainer.appendChild(el);
+
+    /* Start continuous movement */
+    moveEmojiContinuously(el);
+}
+
+/* =====================================================
+   3. CONTINUOUS EMOJI MOVEMENT
+   ===================================================== */
+function moveEmojiContinuously(el){
+
+    /* Random movement duration (slow & smooth) */
+    const duration = 15000 + Math.random() * 20000;
+
+    /* Random destination & transformation */
+    const x = Math.random() * 100;
+    const y = Math.random() * 100;
+    const rot = Math.random() * 360;
+    const scale = 0.5 + Math.random();
+
+    /* Apply transition */
+    el.style.transition =
+        `top ${duration}ms linear,
+         left ${duration}ms linear,
+         transform ${duration}ms ease-in-out`;
+
+    /* Move emoji */
+    requestAnimationFrame(() => {
+        el.style.top = y + "%";
+        el.style.left = x + "%";
+        el.style.transform = `rotate(${rot}deg) scale(${scale})`;
+    });
+
+    /* Loop forever */
+    setTimeout(() => {
+        moveEmojiContinuously(el);
+    }, duration);
+}
+
+/* =====================================================
+   4. GEOLOCATION LOGIC
+   ===================================================== */
+function getLocation(){
+    const loc = document.getElementById("loc");
+
+    /* Loading state */
+    loc.innerHTML = "<span>📡 Contacting Satellites...</span>";
+    loc.classList.add("visible");
+
+    navigator.geolocation.getCurrentPosition(
+        position => {
+            loc.classList.remove("visible");
+
+            setTimeout(() => {
+                loc.innerHTML = `
+                    <span>Latitude: ${position.coords.latitude.toFixed(5)}</span>
+                    <span>Longitude: ${position.coords.longitude.toFixed(5)}</span>
+                `;
+                loc.classList.add("visible");
+            }, 300);
+        },
+        () => {
+            loc.innerHTML = "<span>⚠️ Access Denied</span>";
+        }
+    );
+}
+
+</script>
+
+</body>
+</html>

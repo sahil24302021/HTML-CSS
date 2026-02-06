@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Animations Demo</title>
+
+
+    <style>
+        :root {
+            --primary-color: #ff5900;
+            --bg-color: #000000;
+            --card-bg: #000000;
+            --text-color: #f8fafc;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.25rem;
+            color: #f0e9e9;
+            margin-bottom: 1rem;
+        }
+
+        .animation-box {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        /* 1. Blinking Text */
+        .blinking-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            animation: blink 1.5s infinite ease-in-out;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+                color: var(--primary-color);
+            }
+
+            50% {
+                opacity: 0.5;
+                color: #a5b4fc;
+            }
+        }
+
+        /* 2. Rotating Loader */
+        .rotating-circle {
+            width: 48px;
+            height: 48px;
+            border: 5px solid x#d5c4c4;
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: rotate 1s linear infinite;
+        }
+
+        @keyframes rotate {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 3. Bouncing Dots */
+        .bouncing-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            animation: bounce 0.6s infinite alternate;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounce {
+            to {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* 4. Floating Icon */
+        .floating-icon {
+            font-size: 3rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* 5. Progress Bar */
+        .progress-container {
+            width: 200px;
+            height: 8px;
+            background-color: #334155;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 50%;
+            position: absolute;
+            left: -50%;
+            animation: slide 2s infinite linear;
+        }
+
+        @keyframes slide {
+            0% {
+                left: -50%;
+            }
+
+            50% {
+                left: 25%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>CSS Animations</h1>
+
+        <section class="card">
+            <h2>1. Blinking Text Loader</h2>
+            <div class="animation-box">
+                <div class="blinking-text">Loading...</div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>2. Rotating Circular Loader</h2>
+            <div class="animation-box">
+                <div class="rotating-circle"></div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>3. Three Bouncing Dots</h2>
+            <div class="animation-box">
+                <div class="bouncing-dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>4. Floating Logo Effect</h2>
+            <div class="animation-box">
+                <div class="floating-icon">❤️</div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>5. Sliding Progress Bar</h2>
+            <div class="animation-box">
+                <div class="progress-container">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+
+</html>

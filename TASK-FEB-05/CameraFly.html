@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            perspective: 1000px;
+            background: black;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tunnel {
+            width: 200px;
+            height: 200px;
+            border: 2px solid cyan;
+            transform-style: preserve-3d;
+            animation: move 4s linear infinite;
+        }
+
+        @keyframes move {
+            from {
+                transform: translateZ(0);
+            }
+
+            to {
+                transform: translateZ(300px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tunnel"></div>
+</body>
+
+</html>

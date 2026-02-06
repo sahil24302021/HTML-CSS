@@ -1,0 +1,102 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at center, #02040f, #000);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1200px;
+            overflow: hidden;
+        }
+
+        .tunnel {
+            position: relative;
+            width: 280px;
+            height: 200px;
+            transform-style: preserve-3d;
+            animation: tunnelSpin 14s linear infinite;
+        }
+
+        .wave {
+            position: absolute;
+            inset: 0;
+            border: 2px solid rgba(0, 240, 255, 0.45);
+            transform-style: preserve-3d;
+            animation: waveMove 4s ease-in-out infinite;
+        }
+
+        .wave:nth-child(1) {
+            transform: translateZ(0px);
+        }
+
+        .wave:nth-child(2) {
+            transform: translateZ(-40px);
+        }
+
+        .wave:nth-child(3) {
+            transform: translateZ(-80px);
+        }
+
+        .wave:nth-child(4) {
+            transform: translateZ(-120px);
+        }
+
+        .wave:nth-child(5) {
+            transform: translateZ(-160px);
+        }
+
+        .wave::before {
+            content: '';
+            position: absolute;
+            inset: -14px;
+            background: linear-gradient(135deg, rgba(0, 255, 255, .35), transparent);
+            filter: blur(18px);
+            z-index: -1;
+        }
+        @keyframes squareWavePulse {
+            0% {
+                transform: translateZ(var(--z, 0)) scale(1);
+                opacity: .55;
+            }
+            50% {
+                transform: translateZ(calc(var(--z, 0) + 20px)) scale(1.12);
+                opacity: 1;
+            }
+            100% {
+                transform: translateZ(var(--z, 0)) scale(1);
+                opacity: .55;
+            }
+        }
+        @keyframes tunnelSpin {
+            from {
+                transform: rotateX(65deg) rotateY(0deg);
+            }
+            to {
+                transform: rotateX(65deg) rotateY(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tunnel">
+        <div class="wave" style="--z0: 0px;"></div>
+        <div class="wave" style="--z0: 40px;"></div>
+        <div class="wave" style="--z0: 80px;"></div>
+        <div class="wave" style="--z0: 120px;"></div>
+        <div class="wave" style="--z0: 160px;"></div>
+    </div>
+</body>
+
+</html>
